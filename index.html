@@ -52,18 +52,25 @@ press space bar to move to next slide
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
             <section>
-                <h1>--Draft--</h1>
+                <h1>DRAFT</h1>
+                <img src="img/appgeo-logo.jpg" />
+            </section>
+
+            <section id='title'>
                 <h1>Filter, Aggregate, and Combine</h1>
-                <h3>Taking Advantage of SQL Queries for Enterprise Databases</h3>
+                <p>Taking Advantage of SQL Queries for Enterprise Databases</p>
+                <img src="img/appgeo-logo.jpg" />
                 <p>
                     <small><a href="http://www.appgeo.com">Guido Stein - Applied Geographics, Inc.</a> / <a href="http://twitter.com/guidos">@guidos</a></small>
                 </p>
+                <!--
                 <p>
                     <small><a href="https://s3.amazonaws.com/guidos-public/presentations/Spring+NEARC+2015+Database+Workshop.pdf">pdf version</a></small>
                 </p>
+-->
             </section>
 
-            <section>
+            <section id='welcome'>
                 <h1>Welcome</h1>
                 <p>
                     Guido Like
@@ -72,70 +79,148 @@ press space bar to move to next slide
                 </p>
             </section>
 
-            <section>
+            <section id='format'>
                 <div style="float:left">
-                    <h2>Esri Native Formats</h2>
+                    <h2>File
+                        <br/>(Esri Native Formats)</h2>
                     <ul>
                         <li>Shape File</li>
                         <li>File Geodatabase</li>
                     </ul>
                 </div>
                 <div>
-                    <h2>Enterprise GDB</h2>
+                    <h2>Enterprise
+                        <br />(SDE Connection)</h2>
                     <ul>
-                        <li>ALTIBASE</li>
                         <li>IBM DB2</li>
                         <li>Informix</li>
-                        <li class="fragment highlight-red" data-fragment-index="1">Microsoft SQL Server</li>
-                        <li>Netezza</li>
                         <li>Oracle</li>
                         <li class="fragment highlight-red" data-fragment-index="1">PostgreSQL</li>
-                        <li>SAP HANA</li>
-                        <li>SQLite</li>
-                        <li>Teradata</li>
+                        <li class="fragment highlight-red" data-fragment-index="1">Microsoft SQL Server</li>
                     </ul>
                 </div>
             </section>
 
-            <section>
+            <section id='enterprise-advantage'>
                 <h2>Enterprise
                     <span class="fragment highlight-red" data-fragment-index="1">
                         <span class="fragment roll-in" data-fragment-index="1">G</span>
                     </span>DB
                 </h2>
                 <ul>
-                    <li>Accesable from more than one place</li>
-                    <li>Multi-User</li>
+                    <li>Server Based</li>
+                    <ul>
+                        <li>Accessible from more than one place</li>
+                        <li>Multi-User</li>
+                    </ul>
                     <li>SQL Data Processing</li>
                     <span class="fragment highlight-red" data-fragment-index="1">
                         <li class="fragment roll-in" data-fragment-index="1">SQL Geospatial Data Processing</li>
                     </span>
                 </ul>
-
             </section>
 
-            <section>
+            <section id='enterprise-overview'>
                 <ul>
-                    <li>Enterprise Database overview</li>
+                    <li style='list-style-type:none'>Esri Enterprise Database Overview</li>
+                    <li style='list-style-type:none'>&nbsp;</li>
+                    <li style='list-style-type:none'>Attributes and Geometry stored in same table</li>
+                    <li style='list-style-type:none'>&nbsp;</li>
                     <ul>
-                        <li>Types</li>
-                        <li>Spatial Types (OGC, WKT, ST)</li>
-                        <li>Spatial Databases (PostGIS, MSSQL, SpatiaLite)</li>
-                        <li>ESRI SDE</li>
-                        <li>CartoDB &amp; PostGIS</li>
+                        <li>PostgreSQL</li>
+                        <ul>
+                            <li>ST_Geometry</li>
+                            <li>PostGIS geometries</li>
+                        </ul>
+                        <li style='list-style-type:none'>&nbsp;</li>
+                        <li>Microsoft SQL Server</li>
+                        <ul>
+                            <li>Microsoft spatial types
+                                <br/>(geometry and geography)</li>
+                        </ul>
                     </ul>
+                    <li style='list-style-type:none'>&nbsp;</li>
+                    <li style='list-style-type:none'><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdb-architecture/geodatabase-storage-in-relational-databases.htm">More Esri Overview</a></li>
                 </ul>
             </section>
+            <section id='create-database-view'>
+                <p style="text-align:left;">Create Database View Tool</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Explanation</th>
+                            <th>Data Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>input_database</td>
+                            <td>The database that contains the tables or feature classes used to construct the view. This database is also where the view will be created.</td>
+                            <td>Workspace</td>
+                        </tr>
+                        <tr>
+                            <td>view_name</td>
+                            <td>The name of the view that will be created in the database.</td>
+                            <td>String</td>
+                        </tr>
+                        <tr>
+                            <td>view_definition</td>
+                            <td>An SQL statement used to construct the view. String
+                            </td>
+                            <td>String</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-            <section>
-                <ul>
-                    <li>Setup</li>
-                    <ul>
-                        <li>CartoDB Account</li>
-                        <li>Import Data</li>
-                    </ul>
-                </ul>
+
+
             </section>
+
+            <section id='setup-account'>
+                <h2>Setup CartoDB Account</h2>
+                <h2><a href='http://cartodb.com'>http://cartodb.com</a></h2>
+            </section>
+
+            <section id='ogc-geometry'>
+                <h2>Enterprise Table</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>OGC_GEOMETRY</th>
+                            <th>DESCRIPTION</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>POINT (30 10)</td>
+                            <td>(X Y)</td>
+                        </tr>
+                        <tr>
+                            <td>MULTILINESTRING(
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;(10 10, 20 20, 10 40),
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;(40 40, 30 30, 40 20, 30 10)
+                                <br />)
+                            </td>
+                            <td>(
+                                <br />(X Y, X Y),
+                                <br />(X Y, X Y)
+                                <br />)</td>
+                        </tr>
+                        <tr>
+                            <td>MULTIPOLYGON (
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;((30 20, 45 40, 10 40, 30 20)),
+                                <br />&nbsp;&nbsp;&nbsp;&nbsp;((15 5, 40 10, 10 20, 5 10, 15 5))
+                                <br />)</td>
+                            <td>(
+                                <br />((X Y, X Y),(X Y, X Y)),
+                                <br />((X Y, X Y))
+                                <br />)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
             <section>
                 <h2>Other Resources</h2>
                 <ul style="list-style-type: none;">
@@ -240,35 +325,6 @@ press space bar to move to next slide
             <section data-background="#dddddd">
             </section>
 
-            <section>
-                <h2>Tabular Tables</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Item</th>
-                            <th>Value</th>
-                            <th>Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Apples</td>
-                            <td>$1</td>
-                            <td>7</td>
-                            <tr>
-                                <tr>
-                                    <td>Lemonade</td>
-                                    <td>$2</td>
-                                    <td>18</td>
-                                    <tr>
-                                        <tr>
-                                            <td>Bread</td>
-                                            <td>$3</td>
-                                            <td>2</td>
-                                            <tr>
-                    </tbody>
-                </table>
-            </section>
 
 -->
 
@@ -343,6 +399,5 @@ https://data.cityofboston.gov/download/af56-j7tb/application/zip
 
 CartoDB Tips and tricks
 http://docs.cartodb.com/tips-and-tricks.html
-
 
 -->
