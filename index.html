@@ -51,10 +51,6 @@ press space bar to move to next slide
 
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
-                <section>
-                    <h1>DRAFT</h1>
-                    <img src="https://s3.amazonaws.com/geospatialdomination/githubio/spring-nearc-2015-db-workshop/img/appgeo-logo.jpg" />
-                </section>
 
                 <section id='title'>
                     <h1>Filter, Aggregate, and Combine</h1>
@@ -67,13 +63,14 @@ press space bar to move to next slide
 
                 <section id='welcome'>
                     <h1>Welcome</h1>
+                    <h2>Guido Stein</h2>
                     <h2 class="fragment roll-in" style="color:orange;">Guido Like Burrito</h2>
                     <ul>
                         <li class="fragment roll-in">GIS Anlayst @ Applied Geographics</li>
                         <li class="fragment roll-in">AvidGeo Meetup Group and Conference Organizer</li>
                         <li class="fragment roll-in">Model Builder, Python, &amp; FME Junky</li>
-                        <li class="fragment roll-in">Database Newb</li>
-                        <li class="fragment roll-in">Open Source Newb</li>
+                        <li class="fragment roll-in">Database NewB</li>
+                        <li class="fragment roll-in">Open Source NewB</li>
                     </ul>
                 </section>
 
@@ -82,13 +79,14 @@ press space bar to move to next slide
                     <div>
                         <ul style="width:425px; vertical-align:top; display:inline-block;">
                             <li>Enterprise Geospatial</li>
-                            <li>PostGIS Geometry</li>
-                            <li>Rodents in Boston</li>
-                            <li>CartoDB</li>
-                            <ul>
-                                <li>Setup account</li>
-                                <li>Add data</li>
-                            </ul>
+                            <li>OGC
+                                <li>Rodents in Boston</li>
+                                <li>CartoDB</li>
+                                <ul>
+                                    <li>Setup account</li>
+                                    <li>Add data</li>
+                                </ul>
+                                <li>PostGIS Geometry</li>
                         </ul>
                         <ul style="width:425px; vertical-align:top; display:inline-block;">
                             <li>SQL Basics</li>
@@ -110,23 +108,44 @@ press space bar to move to next slide
                 </section>
 
                 <section id='format'>
-                    <div style="float:left">
-                        <h2>File Data</h2>
-                        <ul>
-                            <li>Shape File</li>
-                            <li>File Geodatabase</li>
-                            <li><a href "http://desktop.arcgis.com/en/desktop/latest/manage-data/databases/spatially-enable-sqlilte.htm">SQLite</a></li>
-                        </ul>
-                    </div>
                     <div>
-                        <h2>Enterprise</h2>
-                        <ul>
-                            <li>IBM DB2</li>
-                            <li>Informix</li>
-                            <li>Oracle</li>
-                            <li class="fragment highlight-red" data-fragment-index="1">PostgreSQL</li>
-                            <li>Microsoft SQL Server</li>
-                        </ul>
+                        <div style="width:425px; vertical-align:top; display:inline-block;">
+                            <h2 style="text-align: left">File Data Geospatial
+                            </h2>
+                            <ul>
+                                <li>Shape File</li>
+                                <li>File Geodatabase</li>
+                                <li>SQLite</li>
+                                <li>GeoJSON</li>
+                            </ul>
+                        </div>
+                        <div style="width:425px; vertical-align:top; display:inline-block;">
+                            <h2 style="text-align:left">Enterprise Geospatial
+                            </h2>
+                            <ul>
+                                <li>IBM DB2</li>
+                                <li>Informix</li>
+                                <li>Oracle</li>
+                                <li class="fragment highlight-red" data-fragment-index="1">PostgreSQL</li>
+                                <li>Microsoft SQL Server</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top:20px;">
+                        <div style="width: 425px; vertical-align: top; display:inline-block;">
+                            <ul>
+                                <li>
+                                    Single User Access</li>
+                                <li>Shared File System</li>
+                            </ul>
+                        </div>
+
+                        <div style="width:425px; vertical-align:top; display:inline-block;">
+                            <ul>
+                                <li>Multiple User Access</li>
+                                <li>Relational Database Server</li>
+                            </ul>
+                        </div>
                     </div>
                 </section>
 
@@ -140,7 +159,7 @@ press space bar to move to next slide
                         <li>Server Based</li>
                         <ul>
                             <li>Accessible from more than one place</li>
-                            <li>Multi-User</li>
+                            <li>Multi-User Editing</li>
                         </ul>
                         <li>SQL Data Processing</li>
                         <span class="fragment highlight-red" data-fragment-index="1">
@@ -148,6 +167,24 @@ press space bar to move to next slide
                         </span>
                     </ul>
                 </section>
+
+                <section id="esri-postgis">
+                    <p style="text-align:left">Esri Documentation on PostGIS</p>
+                    <ul>
+                        <li> <a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdbs-in-postgresql/database-requirements-postgresql.htm">PostgreSQL database requirements for ArcGIS 10.3.x</a>
+                        </li>
+                        <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdbs-in-postgresql/setup-geodatabase-postgresql-windows.htm">Set up a geodatabase in PostgreSQL on Windows</a></li>
+                        <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdbs-in-postgresql/data-types-postgresql.htm">PostgreSQL data types supported in ArcGIS</a></li>
+                        <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/using-sql-with-gdbs/spatial-sql-queries-on-tables-with-an-st-geometry-column.htm">Spatial SQL queries on tables with an ST_Geometry column</a></li>
+                        <li style="list-style-type:none">&nbsp;</li>
+                    </ul>
+                    <p style="text-align:left">I CAN HAZ POSTGIS</p>
+                    <pre style="height:200px">Example 1 : PostgreSQL &amp; PostGIS Version
+                        <code>SELECT PostGIS_full_version();</code>-- v2.1.7
+                        <code>SELECT version();</code>-- v9.4.3
+                    </pre>
+                </section>
+
 
                 <section id='enterprise-overview'>
                     <ul>
@@ -172,6 +209,7 @@ press space bar to move to next slide
                         <li style='list-style-type:none'><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdb-architecture/geodatabase-storage-in-relational-databases.htm">More Esri Overview</a></li>
                     </ul>
                 </section>
+
                 <section id='create-database-view'>
                     <p style="text-align:left;">Create Database View Tool</p>
                     <table>
@@ -201,9 +239,6 @@ press space bar to move to next slide
                             </tr>
                         </tbody>
                     </table>
-
-
-
                 </section>
 
                 <section id='setup-account'>
