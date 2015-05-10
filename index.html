@@ -1,5 +1,5 @@
-<!doctype html>
-<!--
+< !doctype html>
+    <!--
 Awesome stuff
 
 press 'esc' for overview
@@ -9,317 +9,351 @@ press space bar to move to next slide
 
 -->
 
-<html lang="en">
+    <html lang="en">
 
-<head>
-    <meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-    <title>Spring NEARC 2015 Database Workshop</title>
+        <title>Spring NEARC 2015 Database Workshop</title>
 
-    <meta name="description" content="Filter, Aggregate, and Combine: Taking Advantage of SQL Queries for Enterprise Databases">
-    <meta name="author" content="Guido Stein">
+        <meta name="description" content="Filter, Aggregate, and Combine: Taking Advantage of SQL Queries for Enterprise Databases">
+        <meta name="author" content="Guido Stein">
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-    <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/league.css" id="theme">
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/league.css" id="theme">
 
-    <!-- Code syntax highlighting -->
-    <!--    <link rel="stylesheet" href="lib/css/zenburn.css"> -->
-    <link rel="stylesheet" href="lib/css/railscasts.css">
+        <!-- Code syntax highlighting -->
+        <!--    <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+        <link rel="stylesheet" href="lib/css/railscasts.css">
 
-    <!-- Printing and PDF exports -->
-    <script>
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.type = 'text/css';
-        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
-        document.getElementsByTagName('head')[0].appendChild(link);
-    </script>
-    <!--[if lt IE 9]>
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        </script>
+        <!--[if lt IE 9]>
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-    <div class="reveal">
+        <div class="reveal">
 
-        <!-- Any section element inside of this container is displayed as a slide -->
-        <div class="slides">
-            <section>
-                <h1>DRAFT</h1>
-                <img src="https://s3.amazonaws.com/geospatialdomination/githubio/spring-nearc-2015-db-workshop/img/appgeo-logo.jpg" />
-            </section>
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h1>DRAFT</h1>
+                    <img src="https://s3.amazonaws.com/geospatialdomination/githubio/spring-nearc-2015-db-workshop/img/appgeo-logo.jpg" />
+                </section>
 
-            <section id='title'>
-                <h1>Filter, Aggregate, and Combine</h1>
-                <p>Taking Advantage of SQL Queries for Enterprise Databases</p>
-                <img src="https://s3.amazonaws.com/geospatialdomination/githubio/spring-nearc-2015-db-workshop/img/appgeo-logo.jpg" />
-                <p>
-                    <small><a href="http://www.appgeo.com">Guido Stein - Applied Geographics, Inc.</a> / <a href="http://twitter.com/guidos">@guidos</a></small>
-                </p>
-                <!--
-                <p>
-                    <small><a href="https://s3.amazonaws.com/guidos-public/presentations/Spring+NEARC+2015+Database+Workshop.pdf">pdf version</a></small>
-                </p>
--->
-            </section>
+                <section id='title'>
+                    <h1>Filter, Aggregate, and Combine</h1>
+                    <p>Taking Advantage of SQL Queries for Enterprise Databases</p>
+                    <img src="https://s3.amazonaws.com/geospatialdomination/githubio/spring-nearc-2015-db-workshop/img/appgeo-logo.jpg" />
+                    <p>
+                        <small><a href="http://www.appgeo.com">Guido Stein - Applied Geographics, Inc.</a> / <a href="http://twitter.com/guidos">@guidos</a></small>
+                    </p>
+                </section>
 
-            <section id='welcome'>
-                <h1>Welcome</h1>
-                <p>
-                    Guido Like
-                    <span class="fragment grow">Burrito
-                    </span>
-                </p>
-            </section>
-
-            <section id='format'>
-                <div style="float:left">
-                    <h2>File Data</h2>
+                <section id='welcome'>
+                    <h1>Welcome</h1>
+                    <h2 class="fragment roll-in" style="color:orange;">Guido Like Burrito</h2>
                     <ul>
-                        <li>Shape File</li>
-                        <li>File Geodatabase</li>
-                        <li><a href "http://desktop.arcgis.com/en/desktop/latest/manage-data/databases/spatially-enable-sqlilte.htm">SQLite</a></li>
+                        <li class="fragment roll-in">GIS Anlayst @ Applied Geographics</li>
+                        <li class="fragment roll-in">AvidGeo Meetup Group and Conference Organizer</li>
+                        <li class="fragment roll-in">Model Builder, Python, &amp; FME Junky</li>
+                        <li class="fragment roll-in">Database Newb</li>
+                        <li class="fragment roll-in">Open Source Newb</li>
                     </ul>
-                </div>
-                <div>
-                    <h2>Enterprise</h2>
-                    <ul>
-                        <li>IBM DB2</li>
-                        <li>Informix</li>
-                        <li>Oracle</li>
-                        <li class="fragment highlight-red" data-fragment-index="1">PostgreSQL</li>
-                        <li>Microsoft SQL Server</li>
-                    </ul>
-                </div>
-            </section>
+                </section>
 
-            <section id='enterprise-advantage'>
-                <h2>Enterprise
-                    <span class="fragment highlight-red" data-fragment-index="1">
-                        <span class="fragment roll-in" data-fragment-index="1">G</span>
-                    </span>DB
-                </h2>
-                <ul>
-                    <li>Server Based</li>
-                    <ul>
-                        <li>Accessible from more than one place</li>
-                        <li>Multi-User</li>
-                    </ul>
-                    <li>SQL Data Processing</li>
-                    <span class="fragment highlight-red" data-fragment-index="1">
-                        <li class="fragment roll-in" data-fragment-index="1">SQL Geospatial Data Processing</li>
-                    </span>
-                </ul>
-            </section>
+                <section id='overview'>
+                    <h1>Overview</h1>
+                    <div>
+                        <ul style="width:425px; vertical-align:top; display:inline-block;">
+                            <li>Enterprise Geospatial</li>
+                            <li>PostGIS Geometry</li>
+                            <li>Rodents in Boston</li>
+                            <li>CartoDB</li>
+                            <ul>
+                                <li>Setup account</li>
+                                <li>Add data</li>
+                            </ul>
+                        </ul>
+                        <ul style="width:425px; vertical-align:top; display:inline-block;">
+                            <li>SQL Basics</li>
+                            <ul>
+                                <li>SELECT FROM</li>
+                                <li>WHERE</li>
+                                <li>GROUP BY</li>
+                                <li>LEFT OUTER JOIN</li>
+                            </ul>
+                            <li>Joining another query</li>
+                            <li>Spatial Relationships</li>
+                            <ul>
+                                <li>ST_Intersects</li>
+                                <li>ST_Within</li>
+                            </ul>
 
-            <section id='enterprise-overview'>
-                <ul>
-                    <li style='list-style-type:none'>Esri Enterprise Database Overview</li>
-                    <li style='list-style-type:none'>&nbsp;</li>
-                    <li style='list-style-type:none'>Attributes and Geometry stored in same table</li>
-                    <li style='list-style-type:none'>&nbsp;</li>
-                    <ul>
-                        <li>PostgreSQL</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id='format'>
+                    <div style="float:left">
+                        <h2>File Data</h2>
                         <ul>
-                            <li>ST_Geometry</li>
-                            <li>PostGIS geometries</li>
+                            <li>Shape File</li>
+                            <li>File Geodatabase</li>
+                            <li><a href "http://desktop.arcgis.com/en/desktop/latest/manage-data/databases/spatially-enable-sqlilte.htm">SQLite</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h2>Enterprise</h2>
+                        <ul>
+                            <li>IBM DB2</li>
+                            <li>Informix</li>
+                            <li>Oracle</li>
+                            <li class="fragment highlight-red" data-fragment-index="1">PostgreSQL</li>
+                            <li>Microsoft SQL Server</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id='enterprise-advantage'>
+                    <h2>Enterprise
+                        <span class="fragment highlight-red" data-fragment-index="1">
+                            <span class="fragment roll-in" data-fragment-index="1">G</span>
+                        </span>DB
+                    </h2>
+                    <ul>
+                        <li>Server Based</li>
+                        <ul>
+                            <li>Accessible from more than one place</li>
+                            <li>Multi-User</li>
+                        </ul>
+                        <li>SQL Data Processing</li>
+                        <span class="fragment highlight-red" data-fragment-index="1">
+                            <li class="fragment roll-in" data-fragment-index="1">SQL Geospatial Data Processing</li>
+                        </span>
+                    </ul>
+                </section>
+
+                <section id='enterprise-overview'>
+                    <ul>
+                        <li style='list-style-type:none'>Esri Enterprise Database Overview</li>
+                        <li style='list-style-type:none'>&nbsp;</li>
+                        <li style='list-style-type:none'>Attributes and Geometry stored in same table</li>
+                        <li style='list-style-type:none'>&nbsp;</li>
+                        <ul>
+                            <li>PostgreSQL</li>
+                            <ul>
+                                <li>ST_Geometry</li>
+                                <li>PostGIS geometries</li>
+                            </ul>
+                            <li style='list-style-type:none'>&nbsp;</li>
+                            <li>Microsoft SQL Server</li>
+                            <ul>
+                                <li>Microsoft spatial types
+                                    <br/>(geometry and geography)</li>
+                            </ul>
                         </ul>
                         <li style='list-style-type:none'>&nbsp;</li>
-                        <li>Microsoft SQL Server</li>
-                        <ul>
-                            <li>Microsoft spatial types
-                                <br/>(geometry and geography)</li>
-                        </ul>
+                        <li style='list-style-type:none'><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdb-architecture/geodatabase-storage-in-relational-databases.htm">More Esri Overview</a></li>
                     </ul>
-                    <li style='list-style-type:none'>&nbsp;</li>
-                    <li style='list-style-type:none'><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdb-architecture/geodatabase-storage-in-relational-databases.htm">More Esri Overview</a></li>
-                </ul>
-            </section>
-            <section id='create-database-view'>
-                <p style="text-align:left;">Create Database View Tool</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Parameter</th>
-                            <th>Explanation</th>
-                            <th>Data Type</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>input_database</td>
-                            <td>The database that contains the tables or feature classes used to construct the view. This database is also where the view will be created.</td>
-                            <td>Workspace</td>
-                        </tr>
-                        <tr>
-                            <td>view_name</td>
-                            <td>The name of the view that will be created in the database.</td>
-                            <td>String</td>
-                        </tr>
-                        <tr>
-                            <td>view_definition</td>
-                            <td>An SQL statement used to construct the view. String
-                            </td>
-                            <td>String</td>
-                        </tr>
-                    </tbody>
-                </table>
+                </section>
+                <section id='create-database-view'>
+                    <p style="text-align:left;">Create Database View Tool</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Explanation</th>
+                                <th>Data Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>input_database</td>
+                                <td>The database that contains the tables or feature classes used to construct the view. This database is also where the view will be created.</td>
+                                <td>Workspace</td>
+                            </tr>
+                            <tr>
+                                <td>view_name</td>
+                                <td>The name of the view that will be created in the database.</td>
+                                <td>String</td>
+                            </tr>
+                            <tr>
+                                <td>view_definition</td>
+                                <td>An SQL statement used to construct the view. String
+                                </td>
+                                <td>String</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
 
 
-            </section>
+                </section>
 
-            <section id='setup-account'>
-                <h2>Setup CartoDB Account</h2>
-                <h2><a href='http://cartodb.com'>http://cartodb.com</a></h2>
-            </section>
+                <section id='setup-account'>
+                    <h2>Setup CartoDB Account</h2>
+                    <h2><a href='http://cartodb.com'>http://cartodb.com</a></h2>
+                </section>
 
-            <section id='ogc-geometry'>
-                <h2>Enterprise Table</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>OGC_GEOMETRY</th>
-                            <th>DESCRIPTION</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>POINT (30 10)</td>
-                            <td>(X Y)</td>
-                        </tr>
-                        <tr>
-                            <td>MULTILINESTRING(
-                                <br />&nbsp;&nbsp;&nbsp;&nbsp;(10 10, 20 20, 10 40),
-                                <br />&nbsp;&nbsp;&nbsp;&nbsp;(40 40, 30 30, 40 20, 30 10)
-                                <br />)
-                            </td>
-                            <td>(
-                                <br />(X Y, X Y),
-                                <br />(X Y, X Y)
-                                <br />)</td>
-                        </tr>
-                        <tr>
-                            <td>MULTIPOLYGON (
-                                <br />&nbsp;&nbsp;&nbsp;&nbsp;((30 20, 45 40, 10 40, 30 20)),
-                                <br />&nbsp;&nbsp;&nbsp;&nbsp;((15 5, 40 10, 10 20, 5 10, 15 5))
-                                <br />)</td>
-                            <td>(
-                                <br />((X Y, X Y),(X Y, X Y)),
-                                <br />((X Y, X Y))
-                                <br />)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
+                <section>
+                    <img src="https://s3.amazonaws.com/geospatialdomination/githubio/spring-nearc-2015-db-workshop/img/cartodb-setup-01.png" style="width:100%;" />
+                </section>
 
-            <section>
-                <h2>Other Resources</h2>
-                <ul style="list-style-type: none;">
-                    <li>esri
-                        <ul style="list-style-type: none;">
-                            <li><a href="http://desktop.arcgis.com/en/desktop/latest/tools/data-management-toolbox/create-database-view.htm">Create Database View</a></li>
-                            <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/databases/dbms-data-types-supported.htm">DBMS data types supported in ArcGIS</a></li>
+                <section id='ogc-geometry'>
+                    <h2>Enterprise Table</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>OGC_GEOMETRY</th>
+                                <th>DESCRIPTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>POINT (30 10)</td>
+                                <td>(X Y)</td>
+                            </tr>
+                            <tr>
+                                <td>MULTILINESTRING(
+                                    <br />&nbsp;&nbsp;&nbsp;&nbsp;(10 10, 20 20, 10 40),
+                                    <br />&nbsp;&nbsp;&nbsp;&nbsp;(40 40, 30 30, 40 20, 30 10)
+                                    <br />)
+                                </td>
+                                <td>(
+                                    <br />(X Y, X Y),
+                                    <br />(X Y, X Y)
+                                    <br />)</td>
+                            </tr>
+                            <tr>
+                                <td>MULTIPOLYGON (
+                                    <br />&nbsp;&nbsp;&nbsp;&nbsp;((30 20, 45 40, 10 40, 30 20)),
+                                    <br />&nbsp;&nbsp;&nbsp;&nbsp;((15 5, 40 10, 10 20, 5 10, 15 5))
+                                    <br />)</td>
+                                <td>(
+                                    <br />((X Y, X Y),(X Y, X Y)),
+                                    <br />((X Y, X Y))
+                                    <br />)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
 
-                        </ul>
-                    </li>
-                    <li>CartoDB
-                        <ul style="list-style-type: none;">
-                            <li><a href="http://docs.cartodb.com/tips-and-tricks.html">Tips and Tricks</a></li>
+                <section>
+                    <h2>Other Resources</h2>
+                    <ul style="list-style-type: none;">
+                        <li>esri
+                            <ul style="list-style-type: none;">
+                                <li><a href="http://desktop.arcgis.com/en/desktop/latest/tools/data-management-toolbox/create-database-view.htm">Create Database View</a></li>
+                                <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/databases/dbms-data-types-supported.htm">DBMS data types supported in ArcGIS</a></li>
 
-                        </ul>
-                    </li>
-                    <li>Microsoft
-                        <ul style="list-style-type: none;">
-                            <li><a href="https://msdn.microsoft.com/en-us/library/bb933960.aspx">OGC Methods on Geometry Instances</a></li>
-                        </ul>
-                    </li>
-                    <li>Discover Spatial
-                        <ul style="list-style-type: none;">
-                            <li><a href="http://discoverspatial.com">Turbocharge your geospatial education</a></li>
-                        </ul>
-                    </li>
-                    <li>Boundless
-                        <ul style="list-style-type: none;">
-                            <li><a href="http://workshops.boundlessgeo.com/postgis-intro/spatial_relationships.html">Introduction to PostGIS: Spatial Relationships</a></li>
-                        </ul>
-                </ul>
-            </section>
+                            </ul>
+                        </li>
+                        <li>CartoDB
+                            <ul style="list-style-type: none;">
+                                <li><a href="http://docs.cartodb.com/tips-and-tricks.html">Tips and Tricks</a></li>
 
-            <section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
-            </section>
+                            </ul>
+                        </li>
+                        <li>Microsoft
+                            <ul style="list-style-type: none;">
+                                <li><a href="https://msdn.microsoft.com/en-us/library/bb933960.aspx">OGC Methods on Geometry Instances</a></li>
+                            </ul>
+                        </li>
+                        <li>Discover Spatial
+                            <ul style="list-style-type: none;">
+                                <li><a href="http://discoverspatial.com">Turbocharge your geospatial education</a></li>
+                            </ul>
+                        </li>
+                        <li>Boundless
+                            <ul style="list-style-type: none;">
+                                <li><a href="http://workshops.boundlessgeo.com/postgis-intro/spatial_relationships.html">Introduction to PostGIS: Spatial Relationships</a></li>
+                            </ul>
+                    </ul>
+                </section>
 
-            <section data-background="#dddddd">
-                <pre>
-                    <code class='sql'>SELECT * FROM my_table WHERE id = '5'</code>
-                </pre>
-            </section>
+                <section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
+                </section>
+
+                <section data-background="#dddddd">
+                    <pre>
+                        <code class='sql'>SELECT * FROM my_table WHERE id = '5'</code>
+                    </pre>
+                </section>
+
+            </div>
 
         </div>
 
-    </div>
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
 
-    <script src="lib/js/head.min.js"></script>
-    <script src="js/reveal.js"></script>
+        <script>
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
 
-    <script>
-        // Full list of configuration options available at:
-        // https://github.com/hakimel/reveal.js#configuration
-        Reveal.initialize({
-            controls: true,
-            progress: true,
-            history: true,
-            center: true,
+                transition: 'convex', // none/fade/slide/convex/concave/zoom
 
-            transition: 'convex', // none/fade/slide/convex/concave/zoom
+                // Optional reveal.js plugins
+                dependencies: [{
+                    src: 'lib/js/classList.js',
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                }, {
+                    src: 'plugin/markdown/marked.js',
+                    condition: function() {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                }, {
+                    src: 'plugin/markdown/markdown.js',
+                    condition: function() {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                }, {
+                    src: 'plugin/highlight/highlight.js',
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector('pre code');
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
 
-            // Optional reveal.js plugins
-            dependencies: [{
-                src: 'lib/js/classList.js',
-                condition: function() {
-                    return !document.body.classList;
-                }
-            }, {
-                src: 'plugin/markdown/marked.js',
-                condition: function() {
-                    return !!document.querySelector('[data-markdown]');
-                }
-            }, {
-                src: 'plugin/markdown/markdown.js',
-                condition: function() {
-                    return !!document.querySelector('[data-markdown]');
-                }
-            }, {
-                src: 'plugin/highlight/highlight.js',
-                async: true,
-                condition: function() {
-                    return !!document.querySelector('pre code');
-                },
-                callback: function() {
-                    hljs.initHighlightingOnLoad();
-                }
+                }, {
+                    src: 'plugin/zoom-js/zoom.js',
+                    async: true
+                }, {
+                    src: 'plugin/notes/notes.js',
+                    async: true
+                }]
+            });
+        </script>
 
-            }, {
-                src: 'plugin/zoom-js/zoom.js',
-                async: true
-            }, {
-                src: 'plugin/notes/notes.js',
-                async: true
-            }]
-        });
-    </script>
+    </body>
 
-</body>
-
-</html>
-<!-- other styling
+    </html>
+    <!-- other styling
 
             <section data-background="#dddddd">
             </section>
@@ -328,7 +362,7 @@ press space bar to move to next slide
 -->
 
 
-<!-- import from google docs
+    <!-- import from google docs
 
 Filter, Aggregate, and Combine: Taking Advantage of SQL Queries for Enterprise Databases
 
