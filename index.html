@@ -6,6 +6,7 @@ press 'esc' for overview
 press 's' for speaker view window
 press 'b' to blank the screen
 press space bar to move to next slide
+press command, shift, f
 
 -->
 
@@ -40,8 +41,8 @@ press space bar to move to next slide
             document.getElementsByTagName('head')[0].appendChild(link);
         </script>
         <!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
 
     </head>
 
@@ -53,11 +54,12 @@ press space bar to move to next slide
             <div class="slides">
 
                 <section id='title'>
-                    <h1>Filter, Aggregate, and Combine</h1>
+                    <h2>Filter, Aggregate, and Combine</h2>
                     <p>Taking Advantage of SQL Queries for Enterprise Databases</p>
-                    <img src="https://s3.amazonaws.com/geospatialdomination/githubio/spring-nearc-2015-db-workshop/img/appgeo-logo.jpg" />
+                    <p>Spring NEARC - May 15, 2015</p>
+                    <img src="https://s3.amazonaws.com/guidostein/githubio/spring-nearc-2015-db-workshop/img/appgeo-logo.jpg" />
                     <p>
-                        <small><a href="http://www.appgeo.com">Guido Stein - Applied Geographics, Inc.</a> / <a href="http://twitter.com/guidos">@guidos</a></small>
+                        <a href="http://www.appgeo.com">Guido Stein - Applied Geographics, Inc.</a> / <a href="http://twitter.com/guidos">@guidos</a>
                     </p>
                 </section>
 
@@ -149,7 +151,7 @@ press space bar to move to next slide
                     </div>
                 </section>
 
-                <section id='enterprise-advantage'>
+                <section id='enterprise'>
                     <h2>Enterprise
                         <span class="fragment highlight-red" data-fragment-index="1">
                             <span class="fragment roll-in" data-fragment-index="1">G</span>
@@ -178,41 +180,16 @@ press space bar to move to next slide
                         <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/using-sql-with-gdbs/spatial-sql-queries-on-tables-with-an-st-geometry-column.htm">Spatial SQL queries on tables with an ST_Geometry column</a></li>
                         <li style="list-style-type:none">&nbsp;</li>
                     </ul>
-                    <p style="text-align:left">I CAN HAZ POSTGIS</p>
+                    <p style="text-align:left">Which Version of PostGIS/PostgreSQL am I running?</p>
                     <pre style="height:200px">Example 1 : PostgreSQL &amp; PostGIS Version
                         <code>SELECT PostGIS_full_version();</code>-- v2.1.7
                         <code>SELECT version();</code>-- v9.4.3
                     </pre>
                 </section>
 
-
-                <section id='enterprise-overview'>
-                    <ul>
-                        <li style='list-style-type:none'>Esri Enterprise Database Overview</li>
-                        <li style='list-style-type:none'>&nbsp;</li>
-                        <li style='list-style-type:none'>Attributes and Geometry stored in same table</li>
-                        <li style='list-style-type:none'>&nbsp;</li>
-                        <ul>
-                            <li>PostgreSQL</li>
-                            <ul>
-                                <li>ST_Geometry</li>
-                                <li>PostGIS geometries</li>
-                            </ul>
-                            <li style='list-style-type:none'>&nbsp;</li>
-                            <li>Microsoft SQL Server</li>
-                            <ul>
-                                <li>Microsoft spatial types
-                                    <br/>(geometry and geography)</li>
-                            </ul>
-                        </ul>
-                        <li style='list-style-type:none'>&nbsp;</li>
-                        <li style='list-style-type:none'><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdb-architecture/geodatabase-storage-in-relational-databases.htm">More Esri Overview</a></li>
-                    </ul>
-                </section>
-
                 <section id='create-database-view'>
-                    <p style="text-align:left;">Create Database View Tool</p>
-                    <table>
+                    <p style="text-align:left;"><a href="http://desktop.arcgis.com/en/desktop/latest/tools/data-management-toolbox/create-database-view.htm">Create Database View Tool</a></p>
+                    <table style="color: white;">
                         <thead>
                             <tr>
                                 <th>Parameter</th>
@@ -223,7 +200,7 @@ press space bar to move to next slide
                         <tbody>
                             <tr>
                                 <td>input_database</td>
-                                <td>The database that contains the tables or feature classes used to construct the view. This database is also where the view will be created.</td>
+                                <td>The database that contains the tables used to construct the view. This database is also where the view will be created.</td>
                                 <td>Workspace</td>
                             </tr>
                             <tr>
@@ -241,21 +218,137 @@ press space bar to move to next slide
                     </table>
                 </section>
 
-                <section id='setup-account'>
-                    <h2>Setup CartoDB Account</h2>
+                <section id='cartodb'>
+                    <h1>CartoDB</h1>
                     <h2><a href='http://cartodb.com'>http://cartodb.com</a></h2>
+                    <div style="width:425px; vertical-align:top; display:inline-block;">
+                        CartoDB is an open source tool that allows for the storage and visualization of geospatial data on the web.
+                    </div>
+                    <div style="width:425px; vertical-align:top; display:inline-block;">
+                        <ul>
+                            <li>PostGIS</li>
+                            <li>CartoCSS</li>
+                            <li>API Access</li>
+                            <li>Online Editor</li>
+                        </ul>
+                    </div>
+                    <h2 class="fragment roll-in" style="color:orange;">Open Source</h2>
                 </section>
 
-                <section>
-                    <img src="https://s3.amazonaws.com/geospatialdomination/githubio/spring-nearc-2015-db-workshop/img/cartodb-setup-01.png" style="width:100%;" />
+                <section id='cartodb-setup'>
+                    <h1 style="color: orange;">Hands On #1</h1>
+                    <p><a href="http://cartodb.com"> Setup an account with CartoDB </a></p>
+                    <p><a href="https://data.cityofboston.gov/download/af56-j7tb/application/zip">Add boundary data</a></p>
+                    <p><a href="https://data.cityofboston.gov/api/views/ynt4-n6g9/rows.csv?accessType=DOWNLOAD">Add rodent data</a></p>
+                    <p><a href="https://data.cityofboston.gov/api/views/42qi-w8d7/rows.csv?accessType=DOWNLOAD">Add trash data</a></p>
                 </section>
 
-                <section id='ogc-geometry'>
-                    <h2>Enterprise Table</h2>
-                    <table>
+                <section id='sql'>
+                    <h2>Structured Query Language (SQL)</h2>
+                    <a href="http://www.postgresql.org/docs/9.4/static/queries.html">PostgreSQL Queries</a>
+                </section>
+
+                <section id='select-from'>
+                    <pre>
+                        <code>SELECT table_alias.field_name AS field_alias&#13;FROM table_name AS table_alias;</code>-- Select Syntax
+                        <code>SELECT r.neighborhood AS name&#13;FROM rodent AS r;</code>-- returns a query instance with a field called name pulling populating that field with the rodent table field neighborhood
+                    </pre>
+                    <ul>
+                        <li>
+                            <span style="padding-right:50px;">*</span>(wild card character) </li>
+                        <li>
+                            <span style="padding-right:38px;">--</span>(annotation preceding double dash)</li>
+                        <li>
+                            <span style="padding-right:50px;">;</span>(end of statement)</li>
+                        <li>
+                            <span style="padding-right:50px;">.</span>(optional, sometimes)</li>
+                        <li>Reserved words do not need to be uppercase</li>
+                        <li>Whitespaces don't matter, readability is up to you.</li>
+                        <li>AS is optional</li>
+                    </ul>
+                </section>
+
+                <section id='where'>
+                    <pre>
+                        <code>SELECT table_alias.field_name AS field_alias&#13;FROM table_name AS table_alias&#13;WHERE field_name = value;</code>-- Where Syntax
+                        <code>SELECT r.neighborhood AS name&#13;FROM rodent AS r&#13;WHERE r.neighborhood = 'Dorchester';</code>-- Filter results to include only where neighborhood is Dorchester
+                    </pre>
+                    <ul>
+                        <li>String Literal Values must be surrounded by single quotes</li>
+                        <li>WHERE expression must return a boolean value</li>
+                        <li>WHERE expression can be made of multiple statements connected with AND or OR</li>
+                        <li>WHERE expression is optional</li>
+                    </ul>
+                </section>
+
+                <section id='group-by'>
+                    <pre>
+                        <code>SELECT table_alias.field_name AS field_alias&#13;FROM table_name AS table_alias&#13;WHERE field_name = value&#13;GROUP BY field_name;</code>-- Group By Syntax
+                        <code>SELECT r.neighborhood AS name, COUNT(*) as row_count&#13;FROM rodent AS r&#13;WHERE r.neighborhood = 'Dorchester'&#13;GROUP BY r.neighborhood;</code>-- Aggregate to Dorchester record with count of entries
+                    </pre>
+                    <div style="width:425px; vertical-align:top; display:inline-block;">
+                        Aggregate Options
+                        <ul>
+                            <li>COUNT</li>
+                            <li>SUM</li>
+                            <li>MIN</li>
+                            <li>MAX</li>
+                            <li>AVG</li>
+                        </ul>
+                    </div>
+                    <div style="width:425px; vertical-align:top; display:inline-block;">
+                        <ul>
+                            <li>GROUP BY can be selected directly</li>
+                            <li>GROUP BY and WHERE can be used together.</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id='left-outer-join'>
+                    <pre>
+                        <code>SELECT table_alias.field_name AS field_alias&#13;FROM table_name AS table_alias&#13;LEFT OUTER JOIN table_name AS table_alias &#13;&nbsp;&nbsp;ON table_name.join_field = table_name.join_field</code>-- Left Outer Join By Syntax
+                        <code>SELECT r.*, b.acres as _acres&#13;FROM rodent AS r&#13;LEFT OUTER JOIN boundary as b&#13;&nbsp;&nbsp;ON r.neighborhood = b.name;</code>-- Get Acres of neighborhood for each point
+                    </pre>
+                </section>
+
+                <section id='sql-intro'>
+                    <h1 style="color: orange;">Hands On #2</h1>
+                    <ol>
+                        <li style="list-style-type:none">sql to esri translation</li>
+                        <ol>
+                            <li style="list-style-type:none">select - make layer/view</li>
+                            <li style="list-style-type:none">where - table select</li>
+                            <li style="list-style-type:none">group by - table summary</li>
+                            <li style="list-style-type:none">left outer join - table join</li>
+                        </ol>
+                    </ol>
+                </section>
+
+                <section id='geometry'>
+                    <h1>Where is the geometry?</h1>
+                </section>
+
+                <section 'geometry-field'>
+                    <ul>
+                        <li>ST_Geometry DataType</li>
+                        <ul>
+                            <li>shape</li>
+                            <li>geom</li>
+                            <li>CartoDB</li>
+                            <ul>
+                                <li>the_geom_webmercator</li>
+                            </ul>
+                        </ul>
+                    </ul>
+                    <h2 style="color:orange;" class="fragment roll-in">Thanks OGC</h2>
+                </section>
+
+                <section id='geometry-outline'>
+                    <h2>Geospatial Field</h2>
+                    <table style="color:white;">
                         <thead>
                             <tr>
-                                <th>OGC_GEOMETRY</th>
+                                <th>WKT GEOMETRY</th>
                                 <th>DESCRIPTION</th>
                             </tr>
                         </thead>
@@ -289,7 +382,33 @@ press space bar to move to next slide
                     </table>
                 </section>
 
-                <section>
+                <section id='geometry-opertations'>
+                    <h2>Geometry Joins</h2>
+                    <ul style="list-style-type:none">
+                        <li>ST_Contains</li>
+                        <li>ST_Crosses</li>
+                        <li>ST_Equals</li>
+                        <li>ST_Intersects</li>
+                        <li>ST_Overlaps</li>
+                        <li>ST_Within</li>
+                    </ul>
+                </section>
+
+                <section id='geometry-intersect'>
+                    <pre>
+                        <code>SELECT r.*&#13;FROM rodent as r, boundary as b&#13;WHERE ST_Intersects(r.the_geom, b.the_geom)&#13;AND b.name = 'Dorchester'</code>--spatial join by intersection example
+                        <code>SELECT *&#13;FROM boundary&#13;WHERE name = 'Dorchester'</code>
+                    </pre>
+                </section>
+
+                <section id='geometry-join-demo'>
+                    <h1 style="color: orange;">Hands On #3</h1>
+                    <pre>
+                        <code>boolean ST_Intersects( geometry geomA , geometry geomB );&#13;text ST_AsText(geometry g1);&#13;geometry ST_Buffer(geometry g1, float radius_of_buffer);</code>
+                    </pre>
+                </section>
+
+                <section id='other-resources'>
                     <h2>Other Resources</h2>
                     <ul style="list-style-type: none;">
                         <li>esri
@@ -322,17 +441,31 @@ press space bar to move to next slide
                     </ul>
                 </section>
 
-                <section data-background="https://s3.amazonaws.com/hakim-static/reveal-js/image-placeholder.png">
+                <section id='title-end'>
+                    <h2>Filter, Aggregate, and Combine</h2>
+                    <p>Taking Advantage of SQL Queries for Enterprise Databases</p>
+                    <p>Spring NEARC - May 15, 2015</p>
+                    <img src="https://s3.amazonaws.com/guidostein/githubio/spring-nearc-2015-db-workshop/img/appgeo-logo.jpg" />
+                    <p>
+                        <a href="http://www.appgeo.com">Guido Stein - Applied Geographics, Inc.</a> / <a href="http://twitter.com/guidos">@guidos</a>
+                    </p>
                 </section>
 
-                <section data-background="#dddddd">
-                    <pre>
-                        <code class='sql'>SELECT * FROM my_table WHERE id = '5'</code>
-                    </pre>
+                <section id='more-setup' style="text-align:left;">
+                    <p>ALTER TABLE big_belly_locations
+                        <br>ADD latitude double precision</p>
+                    <p>ALTER TABLE big_belly_locations
+                        <br> ADD longitude double precision</p>
+                    <p>UPDATE big_belly_locations
+                        <br>SET latitude = CAST ((regexp_matches(LOCATION,
+                        <br>'[(](.*),(.*)[)]'))[1] AS double precision)</p>
+                    <p>UPDATE big_belly_locations
+                        <br>SET longitude = CAST ((regexp_matches(LOCATION,
+                        <br>'[(](.*),(.*)[)]'))[2] AS double precision)</p>
+
                 </section>
 
             </div>
-
         </div>
 
         <script src="lib/js/head.min.js"></script>
@@ -388,13 +521,6 @@ press space bar to move to next slide
     </body>
 
     </html>
-    <!-- other styling
-
-            <section data-background="#dddddd">
-            </section>
-
-
--->
 
 
     <!-- import from google docs
@@ -402,68 +528,19 @@ press space bar to move to next slide
 Filter, Aggregate, and Combine: Taking Advantage of SQL Queries for Enterprise Databases
 
 If you are interested in getting comfortable writing queries with SQL and SQL spatial data types to take advantage of your enterprise data, then this is a great place to start. This session will introduce you to the SQL skills you need to write PostgreGIS spatial queries. This will be a hands on tutorial using real data in a CartoDB test environment. Using these SQL skills you will be able to generate useful SDE views with a Geodatabase stored in PostgreSQL DBMS.
+-->
 
-
-
-Enterprise Database overview
-Types
-Spatial Types (OGC, WKT, ST)
-Spatial Databases (PostGIS, MSSQL, SpatiaLite)
-ESRI SDE
-CartoDB & PostGIS
-
-Setup Working environment
-CartoDB create account
-Import data
-
-Case Study 1
-select
-where
-order by
-group by
-
-Case Study 2
-left outer join
-sub joins
-
-Case Study 3
-geom
-wkt
-srid
-
-Case Study 3
-spatial joins
-
-Case Study 4
-spatial queries, aggregations, and sub queries… oh my
-DATA
+    <!--
 
 Boston Rodent Data(CSV)
 https://data.cityofboston.gov/api/views/ynt4-n6g9/rows.csv?accessType=DOWNLOAD
 
-Political Boundaries
-http://wsgw.mass.gov/data/gispub/shape/state/townssurvey_shp.zip
-
 Big Belly Trash Locations (needs lat/lon processesd
 https://data.cityofboston.gov/api/views/42qi-w8d7/rows.csv?accessType=DOWNLOAD
 
-ALTER TABLE big_belly_locations
-ADD latitude double precision
-
-ALTER TABLE big_belly_locations
-ADD longitude double precision
-
-
-
-UPDATE big_belly_locations
-SET latitude = CAST ((regexp_matches(LOCATION, '[(](.*),(.*)[)]'))[1] AS double precision)
-
-UPDATE big_belly_locations
-SET longitude = CAST ((regexp_matches(LOCATION, '[(](.*),(.*)[)]'))[2] AS double precision)
-
-
 Neighborhood Boundaries
 https://data.cityofboston.gov/download/af56-j7tb/application/zip
+
 
 CartoDB Tips and tricks
 http://docs.cartodb.com/tips-and-tricks.html
