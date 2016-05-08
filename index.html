@@ -1,5 +1,5 @@
 < !doctype html>
-  <!--
+    <!--
 Awesome stuff
 
 press 'esc' for overview
@@ -10,546 +10,565 @@ press command, shift, f
 
 -->
 
-  <html lang="en">
+    <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-    <title>Spring NEARC 2015 Database Workshop</title>
+        <title>Spring NEARC 2015 Database Workshop</title>
 
-    <meta name="description" content="Filter, Aggregate, and Combine: Taking Advantage of SQL Queries for Enterprise Databases">
-    <meta name="author" content="Guido Stein">
+        <meta name="description" content="Filter, Aggregate, and Combine: Taking Advantage of SQL Queries for Enterprise Databases">
+        <meta name="author" content="Guido Stein">
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-    <link rel="stylesheet" href="css/reveal.css">
-    <link rel="stylesheet" href="css/theme/league.css" id="theme">
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/league.css" id="theme">
 
-    <!-- Code syntax highlighting -->
-    <!--    <link rel="stylesheet" href="lib/css/zenburn.css"> -->
-    <link rel="stylesheet" href="lib/css/railscasts.css">
+        <!-- Code syntax highlighting -->
+        <!--    <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+        <link rel="stylesheet" href="lib/css/railscasts.css">
 
-    <!-- Printing and PDF exports -->
-    <script>
-      var link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.type = 'text/css';
-      link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
-      document.getElementsByTagName('head')[0].appendChild(link);
-    </script>
-    <!--[if lt IE 9]>
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        </script>
+        <!--[if lt IE 9]>
         <script src="lib/js/html5shiv.js"></script>
         <![endif]-->
 
-  </head>
+    </head>
 
-  <body>
+    <body>
 
-    <div class="reveal">
+        <div class="reveal">
 
-      <!-- Any section element inside of this container is displayed as a slide -->
-      <div class="slides">
-        <section id='title'>
-          <h2>Filter, Aggregate, and Combine</h2>
-          <p>Taking Advantage of SQL Queries for Enterprise Databases</p>
-          <p>Spring NEARC - May 15, 2015</p>
-          <img src="https://s3.amazonaws.com/guidostein/githubio/spring-nearc-2015-db-workshop/img/appgeo-logo.jpg" />
-          <p>
-            <a href="http://www.appgeo.com">Guido Stein - Applied Geographics, Inc.</a> / <a href="http://twitter.com/guidos">@guidos</a>
-            <br/>
-          </p>
-          <p>
-            <a href="http://www.appgeo.com/presentations">More  Presentations</a>
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <section>
+                    <h2>Filter, Aggregate, and Combine</h2>
+                    <p>Taking Advantage of SQL Queries for Enterprise Databases</p>
+                    <p>Spring NEARC - May 15, 2015</p>
+                    <img src="https://s3.amazonaws.com/guidostein/githubio/spring-nearc-2015-db-workshop/img/appgeo-logo.jpg" />
+                    <p>
+                        <a href="http://www.appgeo.com">Guido Stein - Applied Geographics, Inc.</a> / <a href="http://twitter.com/guidos">@guidos</a>
+                        <br/>
+                    </p>
+                    <p>
+                        <a href="http://www.appgeo.com/presentations">More  Presentations</a>
 
-          </p>
-        </section>
+                    </p>
+                </section>
+                <section>
+                    <h1>Welcome</h1>
+                    <h2>Guido Stein</h2>
+                    <h3 style="color:orange;">Sounds Like Burrito</h3>
+                    <ul style="list-style-type: none;">
+                        <li>GIS Anlayst @ Applied Geographics</li>
+                        <li>AvidGeo and FOSS4G Boston 2017 Conference Organizer</li>
+                        <li>Model Builder, Python, GDAL, &amp; FME Junky</li>
+                        <li>Open Source &amp; Database <span style="color:red;">NewB</span> Evangelist</li>
+                    </ul>
+                </section>
+            <section>
+                <h1>How to use this presentation</h1>
+                <p>This presentation goes left->right and up->down each column </p>
+            </section>
+                <section>
+                    <h1>TOC</h1>
+                    <div style="width:425px; vertical-align:top; display:inline-block;">
+                        <ul>
+                            <li><a href="#/3">Enterprise data, what is it good for</a></li>
+                            <li><a href="#/4">How can I use SQL views in my esri enviroment</a></li>
+                            <li><a href="#/5">Why and how to setup a CartoDB account</a></li>
+                        </ul>
+                    </div>
+                    <div style="width:425px; vertical-align:top; display:inline-block;">
+                        <ul style="list-style-type:none">
+                            <li><a href='#/8'>SQL</a></li>
+                            <li><a href='#/9'>SELECT FROM</a></li>
+                            <li><a href='#/10'>WHERE</a></li>
+                            <li><a href='#/11'>GROUP BY</a></li>
+                            <li><a href='#/12'>LEFT OUTER JOIN</a></li>
+                            <li><a href='#/13'>JOIN</a></li>
+                            <li><a href='#/14'>Geometry</a></li>
+                            <li><a href='#/15'>Geometry Operations</a></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Data Formats</h2>
+                        <div>
+                            <div style="width:425px; vertical-align:top; display:inline-block;">
+                                <h3 style="color:orange; margin-bottom:-20px;">Shape File</h3>
+                                <p>Old, old, old</p>
+                                <h3 style="color:orange; margin-bottom:-20px;">File Geodatabase</h3>
+                                <p>So many files to lose</p>
+                                <h3 style="color:orange; margin-bottom:-20px;">SQLite</h3>
+                                <p>GSingle file, universal</p>
+                                <h3 style="color:orange; margin-bottom:-20px;">GeoJSON</h3>
+                                <p>Web happy</p>
+                            </div>
+                            <div style="width:425px; vertical-align:top; display:inline-block;">
+                                <h3 style="color:orange; margin-bottom:-20px;">Oracle</h3>
+                                <p>Fun with drivers</p>
+                                <h3 style="color:orange; margin-bottom:-20px;">SQL Server</h3>
+                                <p>Geospatial since 2008</p>
+                                <h3 style="color:orange; margin-bottom:-20px;">PostgresSQL</h3>
+                                <p>PostGIS is very popular</p>
+                            </div>
+                        </div>
+                        <a href="#/a-1"> </a>
+
+                    </section>
+                    <section>Enterprise Data</section>
+                    <section>Esri + PostGIS</section>
+                    <section>Create Database View Tool</section>
+                    <section>CartoDB</section>
+                    <section>SQL</section>
+                    <section>SELECT FROM</section>
+                    <section>WHERE</section>
+                    <section>GROUP BY</section>
+                    <section>LEFT OUTER JOIN</section>
+                    <section>JOIN</section>
+                    <section>Geometry</section>
+                    <section>Geometry Operations</section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>1</h1>
+                    </section>
+                    <section>a-1</section>
+                    <section>b-1</section>
+                    <section>c-1</section>
+                    <section>d-1</section>
+                    <section>e-1</section>
+                    <section>f-1</section>
+                    <section>g-1</section>
+                    <section>h-1</section>
+                    <section>i-1</section>
+                    <section>j-1</section>
+                    <section>k-1</section>
+                    <section>l-1</section>
+                    <section>m-1</section>
+                </section>
 
 
-        <section id='welcome'>
-          <h1>Welcome</h1>
-          <h2>Guido Stein</h2>
-          <h2 class="fragment roll-in" style="color:orange;">Guido Like Burrito</h2>
-          <ul>
-            <li class="fragment roll-in">GIS Anlayst @ Applied Geographics</li>
-            <li class="fragment roll-in">AvidGeo Meetup Group and Conference Organizer</li>
-            <li class="fragment roll-in">Model Builder, Python, &amp; FME Junky</li>
-            <li class="fragment roll-in">Open Source NewB</li>
-            <li class="fragment roll-in">Database NewB</li>
-          </ul>
-        </section>
-
-        <section>
-          <section id='TOC'>
-            <h1>TOC</h1>
-            <div style="width:425px; vertical-align:top; display:inline-block;">
-              <ul style="list-style-type:none">
-                <li><a href="#/a-0">Data Formats</a></li>
-                <li><a href='#/b-0'>Enterprise Data</a></li>
-                <li><a href='#/c-0'>Esri + PostGIS</a></li>
-                <li><a href='#/d-0'>Create Database View Tool</a></li>
-                <li><a href='#/e-0'>CartoDB</a></li>
-              </ul>
-            </div>
-            <div style="width:425px; vertical-align:top; display:inline-block;">
-              <ul style="list-style-type:none">
-                <li><a href='#/f-0'>SQL</a></li>
-                <li><a href='#/g-0'>SELECT FROM</a></li>
-                <li><a href='#/h-0'>WHERE</a></li>
-                <li><a href='#/i-0'>GROUP BY</a></li>
-                <li><a href='#/j-0'>LEFT OUTER JOIN</a></li>
-                <li><a href='#/k-0'>JOIN</a></li>
-                <li><a href='#/l-0'>Geometry</a></li>
-                <li><a href='#/m-0'>Geometry Operations</a></li>
-              </ul>
-            </div>
-          </section>
-          <section id='a-0'>
-            <h2>Data Formats</h2>
-            <div>
-              <div style="width:425px; vertical-align:top; display:inline-block;">
-                <h3 style="color:orange; margin-bottom:-20px;">Shape File</h3>
-                <p>Old, old, old</p>
-                <h3 style="color:orange; margin-bottom:-20px;">File Geodatabase</h3>
-                <p>So many files to lose</p>
-                <h3 style="color:orange; margin-bottom:-20px;">SQLite</h3>
-                <p>GSingle file, universal</p>
-                <h3 style="color:orange; margin-bottom:-20px;">GeoJSON</h3>
-                <p>Web happy</p>
-              </div>
-              <div style="width:425px; vertical-align:top; display:inline-block;">
-                <h3 style="color:orange; margin-bottom:-20px;">Oracle</h3>
-                <p>Fun with drivers</p>
-                <h3 style="color:orange; margin-bottom:-20px;">SQL Server</h3>
-                <p>Geospatial since 2008</p>
-                <h3 style="color:orange; margin-bottom:-20px;">PostgresSQL</h3>
-                <p>PostGIS is very popular</p>
-              </div>
-            </div>
-            <a href="#" class="navigate-right enabled">_
-            </a>
-          </section>
-          <section id='b-0'>Enterprise Data</section>
-          <section id='c-0'>Esri + PostGIS</section>
-          <section id='d-0'>Create Database View Tool</section>
-          <section id='e-0'>CartoDB</section>
-          <section id='f-0'>SQL</section>
-          <section id='g-0'>SELECT FROM</section>
-          <section id='h-0'>WHERE</section>
-          <section id='i-0'>GROUP BY</section>
-          <section id='j-0'>LEFT OUTER JOIN</section>
-          <section id='k-0'>JOIN</section>
-          <section id='l-0'>Geometry</section>
-          <section id='m-0'>Geometry Operations</section>
-        </section>
-
-        <section>
-          <section id='overview'>
-            <h1>More tools than solutions</h1>
-            <p>No-one owns data processing, there are many ways to store, manipulate, and view data</p>
-          </section>
-          <section id='a-1'>
-            <h2>Data Formats</h2>
-            <h2>Enterprise
+                <section>
+                    <section>
+                        <h1>More tools than solutions</h1>
+                        <p>No-one owns data processing, there are many ways to store, manipulate, and view data</p>
+                    </section>
+                    <section>
+                        <h2>Data Formats</h2>
+                        <h2>Enterprise
                           <span class="fragment highlight-red" data-fragment-index="1">
                               <span class="fragment roll-in" data-fragment-index="1">G</span>
                           </span>DB
                       </h2>
-            <ul>
-              <li>Server Based</li>
-              <ul>
-                <li>Accessible from more than one place</li>
-                <li>Multi-User Editing</li>
-              </ul>
-              <li>SQL Data Processing</li>
-              <span class="fragment highlight-red" data-fragment-index="1">
+                        <ul>
+                            <li>Server Based</li>
+                            <ul>
+                                <li>Accessible from more than one place</li>
+                                <li>Multi-User Editing</li>
+                            </ul>
+                            <li>SQL Data Processing</li>
+                            <span class="fragment highlight-red" data-fragment-index="1">
                               <li class="fragment roll-in" data-fragment-index="1">SQL Geospatial Data Processing</li>
                           </span>
-            </ul>
+                        </ul>
 
-          </section>
-        </section>
+                    </section>
+                </section>
 
-        <section id="esri-postgis">
-          <p style="text-align:left">Esri Documentation on PostGIS</p>
-          <ul>
-            <li> <a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdbs-in-postgresql/database-requirements-postgresql.htm">PostgreSQL database requirements for ArcGIS 10.3.x</a>
-            </li>
-            <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdbs-in-postgresql/setup-geodatabase-postgresql-windows.htm">Set up a geodatabase in PostgreSQL on Windows</a></li>
-            <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdbs-in-postgresql/data-types-postgresql.htm">PostgreSQL data types supported in ArcGIS</a></li>
-            <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/using-sql-with-gdbs/spatial-sql-queries-on-tables-with-an-st-geometry-column.htm">Spatial SQL queries on tables with an ST_Geometry column</a></li>
-            <li style="list-style-type:none">&nbsp;</li>
-          </ul>
-          <p style="text-align:left">Which Version of PostGIS/PostgreSQL am I running?</p>
-          <pre style="height:200px">Example 1 : PostgreSQL &amp; PostGIS Version
+                <section id="esri-postgis">
+                    <p style="text-align:left">Esri Documentation on PostGIS</p>
+                    <ul>
+                        <li> <a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdbs-in-postgresql/database-requirements-postgresql.htm">PostgreSQL database requirements for ArcGIS 10.3.x</a>
+                        </li>
+                        <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdbs-in-postgresql/setup-geodatabase-postgresql-windows.htm">Set up a geodatabase in PostgreSQL on Windows</a></li>
+                        <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/gdbs-in-postgresql/data-types-postgresql.htm">PostgreSQL data types supported in ArcGIS</a></li>
+                        <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/using-sql-with-gdbs/spatial-sql-queries-on-tables-with-an-st-geometry-column.htm">Spatial SQL queries on tables with an ST_Geometry column</a></li>
+                        <li style="list-style-type:none">&nbsp;</li>
+                    </ul>
+                    <p style="text-align:left">Which Version of PostGIS/PostgreSQL am I running?</p>
+                    <pre style="height:200px">Example 1 : PostgreSQL &amp; PostGIS Version
                         <code>SELECT PostGIS_full_version();</code>-- v2.1.7
                         <code>SELECT version();</code>-- v9.4.3
                     </pre>
-        </section>
+                </section>
 
-        <section id='create-database-view'>
-          <p style="text-align:left;"><a href="http://desktop.arcgis.com/en/desktop/latest/tools/data-management-toolbox/create-database-view.htm">Create Database View Tool</a></p>
-          <table style="color: white;">
-            <thead>
-              <tr>
-                <th>Parameter</th>
-                <th>Explanation</th>
-                <th>Data Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>input_database</td>
-                <td>The database that contains the tables used to construct the view. This database is also where the view will be created.</td>
-                <td>Workspace</td>
-              </tr>
-              <tr>
-                <td>view_name</td>
-                <td>The name of the view that will be created in the database.</td>
-                <td>String</td>
-              </tr>
-              <tr>
-                <td>view_definition</td>
-                <td>An SQL statement used to construct the view. String
-                </td>
-                <td>String</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+                <section>
+                    <p style="text-align:left;"><a href="http://desktop.arcgis.com/en/desktop/latest/tools/data-management-toolbox/create-database-view.htm">Create Database View Tool</a></p>
+                    <table style="color: white;">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Explanation</th>
+                                <th>Data Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>input_database</td>
+                                <td>The database that contains the tables used to construct the view. This database is also where the view will be created.</td>
+                                <td>Workspace</td>
+                            </tr>
+                            <tr>
+                                <td>view_name</td>
+                                <td>The name of the view that will be created in the database.</td>
+                                <td>String</td>
+                            </tr>
+                            <tr>
+                                <td>view_definition</td>
+                                <td>An SQL statement used to construct the view. String
+                                </td>
+                                <td>String</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
 
-        <section id='cartodb'>
-          <h1>CartoDB</h1>
-          <h2><a href='http://cartodb.com'>http://cartodb.com</a></h2>
-          <div style="width:425px; vertical-align:top; display:inline-block;">
-            CartoDB is an open source tool that allows for the storage and visualization of geospatial data on the web.
-          </div>
-          <div style="width:425px; vertical-align:top; display:inline-block;">
-            <ul>
-              <li>PostGIS</li>
-              <li>CartoCSS</li>
-              <li>API Access</li>
-              <li>Online Editor</li>
-            </ul>
-          </div>
-          <h2 class="fragment roll-in" style="color:orange;">Open Source</h2>
-        </section>
+                <section>
+                    <h1>CartoDB</h1>
+                    <h2><a href='http://cartodb.com'>http://cartodb.com</a></h2>
+                    <div style="width:425px; vertical-align:top; display:inline-block;">
+                        CartoDB is an open source tool that allows for the storage and visualization of geospatial data on the web.
+                    </div>
+                    <div style="width:425px; vertical-align:top; display:inline-block;">
+                        <ul>
+                            <li>PostGIS</li>
+                            <li>CartoCSS</li>
+                            <li>API Access</li>
+                            <li>Online Editor</li>
+                        </ul>
+                    </div>
+                    <h2 class="fragment roll-in" style="color:orange;">Open Source</h2>
+                </section>
 
-        <section id='cartodb-setup'>
-          <h1 style="color: orange;">Hands On #1</h1>
-          <p>guidos.github.io</p>
-          <p><a href="http://cartodb.com"> Setup an account with CartoDB </a></p>
-          <p><a href="https://data.cityofboston.gov/download/af56-j7tb/application/zip">Add boundary data</a></p>
-          <p><a href="https://data.cityofboston.gov/api/views/ynt4-n6g9/rows.csv?accessType=DOWNLOAD">Add rodent data</a></p>
-          <p><a href="https://data.cityofboston.gov/api/views/42qi-w8d7/rows.csv?accessType=DOWNLOAD">Add trash data</a></p>
-        </section>
+                <section>
+                    <h1 style="color: orange;">Hands On #1</h1>
+                    <p>guidos.github.io</p>
+                    <p><a href="http://cartodb.com"> Setup an account with CartoDB </a></p>
+                    <p><a href="https://data.cityofboston.gov/download/af56-j7tb/application/zip">Add boundary data</a></p>
+                    <p><a href="https://data.cityofboston.gov/api/views/ynt4-n6g9/rows.csv?accessType=DOWNLOAD">Add rodent data</a></p>
+                    <p><a href="https://data.cityofboston.gov/api/views/42qi-w8d7/rows.csv?accessType=DOWNLOAD">Add trash data</a></p>
+                </section>
 
-        <section id='sql'>
-          <h2>Structured Query Language (SQL)</h2>
-          <a href="http://www.postgresql.org/docs/9.4/static/queries.html">PostgreSQL Queries</a>
-        </section>
+                <section>
+                    <h2>Structured Query Language (SQL)</h2>
+                    <a href="http://www.postgresql.org/docs/9.4/static/queries.html">PostgreSQL Queries</a>
+                </section>
 
-        <section id='select-from'>
-          <pre>
+                <section>
+                    <pre>
                         <code>SELECT table_alias.field_name AS field_alias&#13;FROM table_name AS table_alias;</code>-- Select Syntax
                         <code>SELECT r.neighborhood AS name&#13;FROM rodent AS r;</code>-- returns a query instance with a field called name pulling populating that field with the rodent table field neighborhood
                     </pre>
-          <ul>
-            <li>
-              <span style="padding-right:50px;">*</span>(wild card character) </li>
-            <li>
-              <span style="padding-right:38px;">--</span>(annotation preceding double dash)</li>
-            <li>
-              <span style="padding-right:50px;">;</span>(end of statement)</li>
-            <li>
-              <span style="padding-right:50px;">.</span>(optional, sometimes)</li>
-            <li>Reserved words do not need to be uppercase</li>
-            <li>Whitespaces don't matter, readability is up to you.</li>
-            <li>AS is optional</li>
-          </ul>
-        </section>
+                    <ul>
+                        <li>
+                            <span style="padding-right:50px;">*</span>(wild card character) </li>
+                        <li>
+                            <span style="padding-right:38px;">--</span>(annotation preceding double dash)</li>
+                        <li>
+                            <span style="padding-right:50px;">;</span>(end of statement)</li>
+                        <li>
+                            <span style="padding-right:50px;">.</span>(optional, sometimes)</li>
+                        <li>Reserved words do not need to be uppercase</li>
+                        <li>Whitespaces don't matter, readability is up to you.</li>
+                        <li>AS is optional</li>
+                    </ul>
+                </section>
 
-        <section id='where'>
-          <pre>
+                <section>
+                    <pre>
                         <code>SELECT table_alias.field_name AS field_alias&#13;FROM table_name AS table_alias&#13;WHERE field_name = value;</code>-- Where Syntax
                         <code>SELECT r.neighborhood AS name&#13;FROM rodent AS r&#13;WHERE r.neighborhood = 'Dorchester';</code>-- Filter results to include only where neighborhood is Dorchester
                     </pre>
-          <ul>
-            <li>String Literal Values must be surrounded by single quotes</li>
-            <li>WHERE expression must return a boolean value</li>
-            <li>WHERE expression can be made of multiple statements connected with AND or OR</li>
-            <li>WHERE expression is optional</li>
-          </ul>
-        </section>
+                    <ul>
+                        <li>String Literal Values must be surrounded by single quotes</li>
+                        <li>WHERE expression must return a boolean value</li>
+                        <li>WHERE expression can be made of multiple statements connected with AND or OR</li>
+                        <li>WHERE expression is optional</li>
+                    </ul>
+                </section>
 
-        <section id='group-by'>
-          <pre>
+                <section>
+                    <pre>
                         <code>SELECT table_alias.field_name AS field_alias&#13;FROM table_name AS table_alias&#13;WHERE field_name = value&#13;GROUP BY field_name;</code>-- Group By Syntax
                         <code>SELECT r.neighborhood AS name, COUNT(*) as row_count&#13;FROM rodent AS r&#13;WHERE r.neighborhood = 'Dorchester'&#13;GROUP BY r.neighborhood;</code>-- Aggregate to Dorchester record with count of entries
                     </pre>
-          <div style="width:425px; vertical-align:top; display:inline-block;">
-            Aggregate Options
-            <ul>
-              <li>COUNT</li>
-              <li>SUM</li>
-              <li>MIN</li>
-              <li>MAX</li>
-              <li>AVG</li>
-            </ul>
-          </div>
-          <div style="width:425px; vertical-align:top; display:inline-block;">
-            <ul>
-              <li>GROUP BY can be selected directly</li>
-              <li>GROUP BY and WHERE can be used together.</li>
-            </ul>
-          </div>
-        </section>
+                    <div style="width:425px; vertical-align:top; display:inline-block;">
+                        Aggregate Options
+                        <ul>
+                            <li>COUNT</li>
+                            <li>SUM</li>
+                            <li>MIN</li>
+                            <li>MAX</li>
+                            <li>AVG</li>
+                        </ul>
+                    </div>
+                    <div style="width:425px; vertical-align:top; display:inline-block;">
+                        <ul>
+                            <li>GROUP BY can be selected directly</li>
+                            <li>GROUP BY and WHERE can be used together.</li>
+                        </ul>
+                    </div>
+                </section>
 
-        <section id='left-outer-join'>
-          <pre>
+                <section>
+                    <pre>
                         <code>SELECT table_alias.field_name AS field_alias&#13;FROM table_name AS table_alias&#13;LEFT OUTER JOIN table_name AS table_alias &#13;&nbsp;&nbsp;ON table_name.join_field = table_name.join_field</code>-- Left Outer Join By Syntax
                         <code>SELECT r.*, b.acres as _acres&#13;FROM rodent AS r&#13;LEFT OUTER JOIN boundary as b&#13;&nbsp;&nbsp;ON r.neighborhood = b.name;</code>-- Get Acres of neighborhood for each point
                     </pre>
-        </section>
+                </section>
 
-        <section id='sql-intro'>
-          <h1 style="color: orange;">Hands On #2</h1>
-          <ol>
-            <li style="list-style-type:none">sql to esri translation</li>
-            <ol>
-              <li style="list-style-type:none">select - make layer/view</li>
-              <li style="list-style-type:none">where - table select</li>
-              <li style="list-style-type:none">group by - table summary</li>
-              <li style="list-style-type:none">left outer join - table join</li>
-            </ol>
-          </ol>
-        </section>
+                <section>
+                    <h1 style="color: orange;">Hands On #2</h1>
+                    <ol>
+                        <li style="list-style-type:none">sql to esri translation</li>
+                        <ol>
+                            <li style="list-style-type:none">select - make layer/view</li>
+                            <li style="list-style-type:none">where - table select</li>
+                            <li style="list-style-type:none">group by - table summary</li>
+                            <li style="list-style-type:none">left outer join - table join</li>
+                        </ol>
+                    </ol>
+                </section>
 
-        <section id='geometry'>
-          <h1>Where is the geometry?</h1>
-        </section>
+                <section>
+                    <h1>Where is the geometry?</h1>
+                </section>
 
-        <section 'geometry-field'>
-          <ul>
-            <li>ST_Geometry DataType</li>
-            <ul>
-              <li>shape</li>
-              <li>geom</li>
-              <li>CartoDB</li>
-              <ul>
-                <li>the_geom_webmercator</li>
-              </ul>
-            </ul>
-          </ul>
-          <h2 style="color:orange;" class="fragment roll-in">Thanks OGC</h2>
-        </section>
+                <section 'geometry-field'>
+                    <ul>
+                        <li>ST_Geometry DataType</li>
+                        <ul>
+                            <li>shape</li>
+                            <li>geom</li>
+                            <li>CartoDB</li>
+                            <ul>
+                                <li>the_geom_webmercator</li>
+                            </ul>
+                        </ul>
+                    </ul>
+                    <h2 style="color:orange;" class="fragment roll-in">Thanks OGC</h2>
+                </section>
 
-        <section id='geometry-outline'>
-          <h2>Geospatial Field</h2>
-          <table style="color:white;">
-            <thead>
-              <tr>
-                <th>WKT GEOMETRY</th>
-                <th>DESCRIPTION</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>POINT (30 10)</td>
-                <td>(X Y)</td>
-              </tr>
-              <tr>
-                <td>MULTILINESTRING(
-                  <br />&nbsp;&nbsp;&nbsp;&nbsp;(10 10, 20 20, 10 40),
-                  <br />&nbsp;&nbsp;&nbsp;&nbsp;(40 40, 30 30, 40 20, 30 10)
-                  <br />)
-                </td>
-                <td>(
-                  <br />(X Y, X Y),
-                  <br />(X Y, X Y)
-                  <br />)</td>
-              </tr>
-              <tr>
-                <td>MULTIPOLYGON (
-                  <br />&nbsp;&nbsp;&nbsp;&nbsp;((30 20, 45 40, 10 40, 30 20)),
-                  <br />&nbsp;&nbsp;&nbsp;&nbsp;((15 5, 40 10, 10 20, 5 10, 15 5))
-                  <br />)</td>
-                <td>(
-                  <br />((X Y, X Y),(X Y, X Y)),
-                  <br />((X Y, X Y))
-                  <br />)</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
+                <section>
+                    <h2>Geospatial Field</h2>
+                    <table style="color:white;">
+                        <thead>
+                            <tr>
+                                <th>WKT GEOMETRY</th>
+                                <th>DESCRIPTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>POINT (30 10)</td>
+                                <td>(X Y)</td>
+                            </tr>
+                            <tr>
+                                <td>MULTILINESTRING(
+                                    <br />&nbsp;&nbsp;&nbsp;&nbsp;(10 10, 20 20, 10 40),
+                                    <br />&nbsp;&nbsp;&nbsp;&nbsp;(40 40, 30 30, 40 20, 30 10)
+                                    <br />)
+                                </td>
+                                <td>(
+                                    <br />(X Y, X Y),
+                                    <br />(X Y, X Y)
+                                    <br />)</td>
+                            </tr>
+                            <tr>
+                                <td>MULTIPOLYGON (
+                                    <br />&nbsp;&nbsp;&nbsp;&nbsp;((30 20, 45 40, 10 40, 30 20)),
+                                    <br />&nbsp;&nbsp;&nbsp;&nbsp;((15 5, 40 10, 10 20, 5 10, 15 5))
+                                    <br />)</td>
+                                <td>(
+                                    <br />((X Y, X Y),(X Y, X Y)),
+                                    <br />((X Y, X Y))
+                                    <br />)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
 
-        <section id='geometry-opertations'>
-          <h2>Geometry Joins</h2>
-          <ul style="list-style-type:none">
-            <li>ST_Contains</li>
-            <li>ST_Crosses</li>
-            <li>ST_Equals</li>
-            <li>ST_Intersects</li>
-            <li>ST_Overlaps</li>
-            <li>ST_Within</li>
-          </ul>
-        </section>
+                <section>
+                    <h2>Geometry Joins</h2>
+                    <ul style="list-style-type:none">
+                        <li>ST_Contains</li>
+                        <li>ST_Crosses</li>
+                        <li>ST_Equals</li>
+                        <li>ST_Intersects</li>
+                        <li>ST_Overlaps</li>
+                        <li>ST_Within</li>
+                    </ul>
+                </section>
 
-        <section id='geometry-intersect'>
-          <pre>
+                <section>
+                    <pre>
                         <code>SELECT r.*&#13;FROM rodent as r, boundary as b&#13;WHERE ST_Intersects(r.the_geom, b.the_geom)&#13;AND b.name = 'Dorchester'</code>--spatial join by intersection example
                         <code>SELECT *&#13;FROM boundary&#13;WHERE name = 'Dorchester'</code>
                     </pre>
-        </section>
+                </section>
 
-        <section id='geometry-join-demo'>
-          <h1 style="color: orange;">Hands On #3</h1>
-          <pre>
+                <section>
+                    <h1 style="color: orange;">Hands On #3</h1>
+                    <pre>
                         <code>boolean ST_Intersects( geometry geomA , geometry geomB );&#13;text ST_AsText(geometry g1);&#13;geometry ST_Buffer(geometry g1, float radius_of_buffer);</code>
                     </pre>
-        </section>
+                </section>
 
-        <section id='other-resources'>
-          <h2>Other Resources</h2>
-          <ul style="list-style-type: none;">
-            <li>esri
-              <ul style="list-style-type: none;">
-                <li><a href="http://desktop.arcgis.com/en/desktop/latest/tools/data-management-toolbox/create-database-view.htm">Create Database View</a></li>
-                <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/databases/dbms-data-types-supported.htm">DBMS data types supported in ArcGIS</a></li>
+                <section>
+                    <h2>Other Resources</h2>
+                    <ul style="list-style-type: none;">
+                        <li>esri
+                            <ul style="list-style-type: none;">
+                                <li><a href="http://desktop.arcgis.com/en/desktop/latest/tools/data-management-toolbox/create-database-view.htm">Create Database View</a></li>
+                                <li><a href="http://desktop.arcgis.com/en/desktop/latest/manage-data/databases/dbms-data-types-supported.htm">DBMS data types supported in ArcGIS</a></li>
 
-              </ul>
-            </li>
-            <li>CartoDB
-              <ul style="list-style-type: none;">
-                <li><a href="http://docs.cartodb.com/tips-and-tricks.html">Tips and Tricks</a></li>
+                            </ul>
+                        </li>
+                        <li>CartoDB
+                            <ul style="list-style-type: none;">
+                                <li><a href="http://docs.cartodb.com/tips-and-tricks.html">Tips and Tricks</a></li>
 
-              </ul>
-            </li>
-            <li>Microsoft
-              <ul style="list-style-type: none;">
-                <li><a href="https://msdn.microsoft.com/en-us/library/bb933960.aspx">OGC Methods on Geometry Instances</a></li>
-              </ul>
-            </li>
-            <li>Discover Spatial
-              <ul style="list-style-type: none;">
-                <li><a href="http://discoverspatial.com">Turbocharge your geospatial education</a></li>
-              </ul>
-            </li>
-            <li>Boundless
-              <ul style="list-style-type: none;">
-                <li><a href="http://workshops.boundlessgeo.com/postgis-intro/spatial_relationships.html">Introduction to PostGIS: Spatial Relationships</a></li>
-              </ul>
-          </ul>
-        </section>
+                            </ul>
+                        </li>
+                        <li>Microsoft
+                            <ul style="list-style-type: none;">
+                                <li><a href="https://msdn.microsoft.com/en-us/library/bb933960.aspx">OGC Methods on Geometry Instances</a></li>
+                            </ul>
+                        </li>
+                        <li>Discover Spatial
+                            <ul style="list-style-type: none;">
+                                <li><a href="http://discoverspatial.com">Turbocharge your geospatial education</a></li>
+                            </ul>
+                        </li>
+                        <li>Boundless
+                            <ul style="list-style-type: none;">
+                                <li><a href="http://workshops.boundlessgeo.com/postgis-intro/spatial_relationships.html">Introduction to PostGIS: Spatial Relationships</a></li>
+                            </ul>
+                    </ul>
+                </section>
 
-        <section id='title-end'>
-          <h2>Filter, Aggregate, and Combine</h2>
-          <p>Taking Advantage of SQL Queries for Enterprise Databases</p>
-          <p>Spring NEARC - May 15, 2015</p>
-          <img src="https://s3.amazonaws.com/guidostein/githubio/spring-nearc-2015-db-workshop/img/appgeo-logo.jpg" />
-          <p>
-            <a href="http://www.appgeo.com">Guido Stein - Applied Geographics, Inc.</a> / <a href="http://twitter.com/guidos">@guidos</a>
-          </p>
-        </section>
+                <section>
+                    <h2>Filter, Aggregate, and Combine</h2>
+                    <p>Taking Advantage of SQL Queries for Enterprise Databases</p>
+                    <p>Spring NEARC - May 15, 2015</p>
+                    <img src="https://s3.amazonaws.com/guidostein/githubio/spring-nearc-2015-db-workshop/img/appgeo-logo.jpg" />
+                    <p>
+                        <a href="http://www.appgeo.com">Guido Stein - Applied Geographics, Inc.</a> / <a href="http://twitter.com/guidos">@guidos</a>
+                    </p>
+                </section>
 
-        <section id='more-setup' style="text-align:left;">
-          <p>ALTER TABLE big_belly_locations
-            <br> ADD latitude double precision</p>
-          <p>ALTER TABLE big_belly_locations
-            <br> ADD longitude double precision</p>
-          <p>UPDATE big_belly_locations
-            <br>SET latitude = CAST ((regexp_matches(LOCATION,
-            <br>'[(](.*),(.*)[)]'))[1] AS double precision)</p>
-          <p>UPDATE big_belly_locations
-            <br>SET longitude = CAST ((regexp_matches(LOCATION,
-            <br>'[(](.*),(.*)[)]'))[2] AS double precision)</p>
+                <section style="text-align:left;">
+                    <p>ALTER TABLE big_belly_locations
+                        <br> ADD latitude double precision</p>
+                    <p>ALTER TABLE big_belly_locations
+                        <br> ADD longitude double precision</p>
+                    <p>UPDATE big_belly_locations
+                        <br>SET latitude = CAST ((regexp_matches(LOCATION,
+                        <br>'[(](.*),(.*)[)]'))[1] AS double precision)</p>
+                    <p>UPDATE big_belly_locations
+                        <br>SET longitude = CAST ((regexp_matches(LOCATION,
+                        <br>'[(](.*),(.*)[)]'))[2] AS double precision)</p>
 
-        </section>
+                </section>
 
-      </div>
-    </div>
+            </div>
+        </div>
 
-    <script src="lib/js/head.min.js"></script>
-    <script src="js/reveal.js"></script>
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
 
-    <script>
-      // Full list of configuration options available at:
-      // https://github.com/hakimel/reveal.js#configuration
-      Reveal.initialize({
-        controls: true,
-        progress: true,
-        history: true,
-        center: true,
+        <script>
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
 
-        transition: 'convex', // none/fade/slide/convex/concave/zoom
+                transition: 'convex', // none/fade/slide/convex/concave/zoom
 
-        // Optional reveal.js plugins
-        dependencies: [{
-          src: 'lib/js/classList.js',
-          condition: function() {
-            return !document.body.classList;
-          }
-        }, {
-          src: 'plugin/markdown/marked.js',
-          condition: function() {
-            return !!document.querySelector('[data-markdown]');
-          }
-        }, {
-          src: 'plugin/markdown/markdown.js',
-          condition: function() {
-            return !!document.querySelector('[data-markdown]');
-          }
-        }, {
-          src: 'plugin/highlight/highlight.js',
-          async: true,
-          condition: function() {
-            return !!document.querySelector('pre code');
-          },
-          callback: function() {
-            hljs.initHighlightingOnLoad();
-          }
+                // Optional reveal.js plugins
+                dependencies: [{
+                    src: 'lib/js/classList.js',
+                    condition: function() {
+                        return !document.body.classList;
+                    }
+                }, {
+                    src: 'plugin/markdown/marked.js',
+                    condition: function() {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                }, {
+                    src: 'plugin/markdown/markdown.js',
+                    condition: function() {
+                        return !!document.querySelector('[data-markdown]');
+                    }
+                }, {
+                    src: 'plugin/highlight/highlight.js',
+                    async: true,
+                    condition: function() {
+                        return !!document.querySelector('pre code');
+                    },
+                    callback: function() {
+                        hljs.initHighlightingOnLoad();
+                    }
 
-        }, {
-          src: 'plugin/zoom-js/zoom.js',
-          async: true
-        }, {
-          src: 'plugin/notes/notes.js',
-          async: true
-        }]
-      });
-    </script>
-    <script>
-      (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-          (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-          m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-      })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+                }, {
+                    src: 'plugin/zoom-js/zoom.js',
+                    async: true
+                }, {
+                    src: 'plugin/notes/notes.js',
+                    async: true
+                }]
+            });
+        </script>
+        <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-      ga('create', 'UA-9187899-9', 'auto');
-      ga('send', 'pageview');
-    </script>
+            ga('create', 'UA-9187899-9', 'auto');
+            ga('send', 'pageview');
+        </script>
 
-  </body>
+    </body>
 
-  </html>
+    </html>
 
 
-  <!-- import from google docs
+    <!-- import from google docs
 
 Filter, Aggregate, and Combine: Taking Advantage of SQL Queries for Enterprise Databases
 
 If you are interested in getting comfortable writing queries with SQL and SQL spatial data types to take advantage of your enterprise data, then this is a great place to start. This session will introduce you to the SQL skills you need to write PostgreGIS spatial queries. This will be a hands on tutorial using real data in a CartoDB test environment. Using these SQL skills you will be able to generate useful SDE views with a Geodatabase stored in PostgreSQL DBMS.
 -->
 
-  <!--
+    <!--
 
 Boston Rodent Data(CSV)
 https://data.cityofboston.gov/api/views/ynt4-n6g9/rows.csv?accessType=DOWNLOAD
